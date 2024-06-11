@@ -249,4 +249,4 @@ ourGallery.forEach((img) => {
 
     }); 
 
-});y
+}); 
