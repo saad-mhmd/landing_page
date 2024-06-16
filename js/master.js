@@ -254,16 +254,29 @@ ourGallery.forEach((img) => {
 // Select All Bullets
 const allBullets = document.querySelectorAll(".nav-bullets .bullet");
 
-allBullets.forEach(bullet => {
+// Select All Links
+const allLinks = document.querySelectorAll(".links a");
 
-    bullet.addEventListener('click', (e) => {
 
-        document.querySelector(e.target.dataset.section).scrollIntoView({
+function scrollToElement(elements) {
 
-            behavior: 'smooth'
+    elements.forEach(ele => {
 
+        ele.addEventListener('click', (e) => {
+    
+            e.preventDefault();
+    
+            document.querySelector(e.target.dataset.section).scrollIntoView({
+    
+                behavior: 'smooth'
+    
+            });
+    
         });
-
+    
     });
 
-});
+}
+
+scrollToElement(allBullets);
+scrollToElement(allLinks)
