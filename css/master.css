@@ -113,13 +113,17 @@ body {
 .settings-box .option-box span.active {
     opacity: 1;
 }
-
-.settings-box .random-backgrounds .yes{
-    
-}
-
-.settings-box .random-backgrounds .no{
-
+.settings-box .reset-options{
+    background-color: #F44336;
+    border: none;
+    width: 178px;
+    margin: 10px auto;
+    display: block;
+    color: #FFF;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 /* End Settings Box */
