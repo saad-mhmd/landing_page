@@ -62,24 +62,17 @@ const colorsLi = document.querySelectorAll(".colors-list li");
 
 // Loop on All List Items
 colorsLi.forEach((li) => {
+
   // Click on Each List Item
   li.addEventListener("click", (e) => {
+
     // Set Color on Root
-    document.documentElement.style.setProperty(
-      "--main-color",
-      e.target.dataset.color
-    );
+    document.documentElement.style.setProperty('--main-color', e.target.dataset.color);
 
     // Set Color on Local Storage
     localStorage.setItem("color_option", e.target.dataset.color);
 
-    // Remove Active Class From All Children
-    e.target.parentElement.querySelectorAll(".active").forEach((element) => {
-      element.classList.remove("active");
-    });
-
-    // Add Active Class on Self
-    e.target.classList.add("active");
+    handleActive(e);
   });
 });
 
@@ -88,15 +81,11 @@ const randomBackEl = document.querySelectorAll(".random-backgrounds span");
 
 // Loop on All Spans
 randomBackEl.forEach((span) => {
+
   // Click on Each Span
   span.addEventListener("click", (e) => {
-    // Remove Active Class From All Children
-    e.target.parentElement.querySelectorAll(".active").forEach((element) => {
-      element.classList.remove("active");
-    });
 
-    // Add Active Class on Self
-    e.target.classList.add("active");
+    handleActive(e);
 
     if (e.target.dataset.background === "yes") {
       backgroundOption = true;
@@ -158,7 +147,10 @@ window.onscroll = function () {
   // Margin to trigger animation before the section is fully in view
   let margin = 1;
 
-  if (windowScrollTop > skillsOffsetTop + skillsOuterHeight - windowHeight - margin) {
+  if (
+    windowScrollTop >
+    skillsOffsetTop + skillsOuterHeight - windowHeight - margin
+  ) {
     let allSkills = document.querySelectorAll(
       ".skill-box .skill-progress span"
     );
@@ -173,82 +165,74 @@ window.onscroll = function () {
 let ourGallery = document.querySelectorAll(".gallery img");
 
 ourGallery.forEach((img) => {
+  img.addEventListener("click", (e) => {
+    // Create Overlay element
+    let overlay = document.createElement("div");
 
-    img.addEventListener('click', (e) => {
+    // Add class to overlay
+    overlay.className = "popup-overlay";
 
-        // Create Overlay element
-        let overlay = document.createElement("div");
+    // Append overlay to the body
+    document.body.appendChild(overlay);
 
-        // Add class to overlay
-        overlay.className = 'popup-overlay';
+    // Create the Popup
+    let popupBox = document.createElement("div");
 
-        // Append overlay to the body
-        document.body.appendChild(overlay);
+    // Add Class to the Popup Box
+    popupBox.className = "popup-box";
 
-        // Create the Popup
-        let popupBox = document.createElement("div");
+    if (img.alt !== null) {
+      // Create Heading
+      let imgHeading = document.createElement("h3");
 
-        // Add Class to the Popup Box
-        popupBox.className = 'popup-box';
+      // Create text for heading
+      let imgTetx = document.createTextNode(img.alt);
 
-        if ((img.alt !== null)) {
-            
-            // Create Heading
-            let imgHeading = document.createElement("h3");
+      // Append the text to the heading
+      imgHeading.appendChild(imgTetx);
 
-            // Create text for heading
-            let imgTetx = document.createTextNode(img.alt);
+      // Append the heading to the popup box
+      popupBox.appendChild(imgHeading);
+    }
 
-            // Append the text to the heading
-            imgHeading.appendChild(imgTetx);
+    // Create the Image
+    let popupImage = document.createElement("img");
 
-            // Append the heading to the popup box
-            popupBox.appendChild(imgHeading);
-        }
+    // Set image source
+    popupImage.src = img.src;
 
-        // Create the Image
-        let popupImage = document.createElement("img");
+    // Add Image to Popup Box
+    popupBox.appendChild(popupImage);
 
-        // Set image source
-        popupImage.src = img.src;
+    // Append the popop box to body
+    document.body.appendChild(popupBox);
 
-        // Add Image to Popup Box
-        popupBox.appendChild(popupImage);
+    // Create the Close Span
+    let closeButton = document.createElement("span");
 
-        // Append the popop box to body
-        document.body.appendChild(popupBox);
+    // Create the Close Button Text
+    let closeButtonText = document.createTextNode("X");
 
-        // Create the Close Span
-        let closeButton = document.createElement("span");
+    // Append text to Close Button
+    closeButton.appendChild(closeButtonText);
 
-        // Create the Close Button Text
-        let closeButtonText = document.createTextNode("X");
+    // Add Class to Close Button
+    closeButton.className = "close-button";
 
-        // Append text to Close Button
-        closeButton.appendChild(closeButtonText);
+    // Add Close Button to the Popup Box
+    popupBox.appendChild(closeButton);
+  });
 
-        // Add Class to Close Button
-        closeButton.className = 'close-button';
-        
-        // Add Close Button to the Popup Box
-        popupBox.appendChild(closeButton);
+  // Close popup
+  document.addEventListener("click", function (e) {
+    if (e.target.className == "close-button") {
+      // Remove the current popup
+      e.target.parentNode.remove();
 
-    });
-
-    // Close popup
-    document.addEventListener('click', function (e) {
-
-        if (e.target.className == 'close-button') {
-
-            // Remove the current popup
-            e.target.parentNode.remove();
-
-            // Remove Overlay
-            document.querySelector('.popup-overlay').remove();
-        }
-
-    }); 
-
+      // Remove Overlay
+      document.querySelector(".popup-overlay").remove();
+    }
+  });
 });
 
 // Select All Bullets
@@ -257,26 +241,29 @@ const allBullets = document.querySelectorAll(".nav-bullets .bullet");
 // Select All Links
 const allLinks = document.querySelectorAll(".links a");
 
-
 function scrollToElement(elements) {
+  elements.forEach((ele) => {
+    ele.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    elements.forEach(ele => {
-
-        ele.addEventListener('click', (e) => {
-    
-            e.preventDefault();
-    
-            document.querySelector(e.target.dataset.section).scrollIntoView({
-    
-                behavior: 'smooth'
-    
-            });
-    
-        });
-    
+      document.querySelector(e.target.dataset.section).scrollIntoView({
+        behavior: "smooth",
+      });
     });
-
+  });
 }
 
 scrollToElement(allBullets);
-scrollToElement(allLinks)
+scrollToElement(allLinks);
+
+// Handle Active State
+function handleActive(ev) {
+  // Remove Active Class From All Children
+  ev.target.parentElement.querySelectorAll(".active").forEach((element) => {
+    element.classList.remove("active");
+  });
+
+  // Add Active Class on Self
+  ev.target.classList.add("active");
+
+}
