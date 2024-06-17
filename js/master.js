@@ -30,20 +30,17 @@ let backgroundLocalItem = localStorage.getItem("background_option");
 
 // Check if Random Background Local Storage is not Empty
 if (backgroundLocalItem !== null) {
-  if (backgroundLocalItem === "true") {
-    backgroundOption = true;
-  } else {
-    backgroundOption = false;
-  }
-
+    
   // Remove Active class from all Spans
   document.querySelectorAll(".random-backgrounds span").forEach((element) => {
     element.classList.remove("active");
   });
 
   if (backgroundLocalItem === "true") {
+    backgroundOption = true;
     document.querySelector(".random-backgrounds .yes").classList.add("active");
   } else {
+    backgroundOption = false;
     document.querySelector(".random-backgrounds .no").classList.add("active");
   }
 }
@@ -62,12 +59,13 @@ const colorsLi = document.querySelectorAll(".colors-list li");
 
 // Loop on All List Items
 colorsLi.forEach((li) => {
-
   // Click on Each List Item
   li.addEventListener("click", (e) => {
-
     // Set Color on Root
-    document.documentElement.style.setProperty('--main-color', e.target.dataset.color);
+    document.documentElement.style.setProperty(
+      "--main-color",
+      e.target.dataset.color
+    );
 
     // Set Color on Local Storage
     localStorage.setItem("color_option", e.target.dataset.color);
@@ -81,10 +79,8 @@ const randomBackEl = document.querySelectorAll(".random-backgrounds span");
 
 // Loop on All Spans
 randomBackEl.forEach((span) => {
-
   // Click on Each Span
   span.addEventListener("click", (e) => {
-
     handleActive(e);
 
     if (e.target.dataset.background === "yes") {
@@ -265,5 +261,42 @@ function handleActive(ev) {
 
   // Add Active Class on Self
   ev.target.classList.add("active");
-
 }
+
+let bulletsSpan = document.querySelectorAll(".bullets-option span");
+
+let bulletsContainer = document.querySelector(".nav-bullets");
+
+let bulletsLocalItem = localStorage.getItem("bullets_option");
+
+if (bulletsLocalItem !== null) {
+  bulletsSpan.forEach((span) => {
+    span.classList.remove("active");
+  });
+
+  if (bulletsLocalItem === "block") {
+    bulletsContainer.style.display = "block";
+
+    document.querySelector(".bullets-option .yes").classList.add("active");
+  } else {
+    bulletsContainer.style.display = "none";
+
+    document.querySelector(".bullets-option .no").classList.add("active");
+  }
+}
+
+bulletsSpan.forEach((span) => {
+  span.addEventListener("click", (e) => {
+    if (span.dataset.display === "show") {
+      bulletsContainer.style.display = "block";
+
+      localStorage.setItem("bullets_option", "block");
+    } else {
+      bulletsContainer.style.display = "none";
+
+      localStorage.setItem("bullets_option", "none");
+    }
+
+    handleActive(e);
+  });
+});
