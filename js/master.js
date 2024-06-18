@@ -30,7 +30,6 @@ let backgroundLocalItem = localStorage.getItem("background_option");
 
 // Check if Random Background Local Storage is not Empty
 if (backgroundLocalItem !== null) {
-    
   // Remove Active class from all Spans
   document.querySelectorAll(".random-backgrounds span").forEach((element) => {
     element.classList.remove("active");
@@ -303,13 +302,45 @@ bulletsSpan.forEach((span) => {
 
 // Reset Button
 document.querySelector(".reset-options").onclick = function () {
-    
-    // localStorage.clear();
-    localStorage.removeItem("color_option");
-    localStorage.removeItem("background_option");
-    localStorage.removeItem("bullets_option");
+  // localStorage.clear();
+  localStorage.removeItem("color_option");
+  localStorage.removeItem("background_option");
+  localStorage.removeItem("bullets_option");
 
   // Reload Window
   window.location.reload();
-  
+};
+
+// Toggle Menu
+let toggleBtn = document.querySelector(".toggle-menu");
+let theLinks = document.querySelector(".links");
+
+toggleBtn.onclick = function (e) {
+  // Stop Propagation
+  e.stopPropagation();
+
+  // Toggle Class "menu-active" on Button
+  this.classList.toggle("menu-active");
+
+  // Toggle Class "open" on Links
+  theLinks.classList.toggle("open");
+};
+
+// Click anywhere outside menu and toggle button to close menu
+document.addEventListener("click", (e) => {
+  if (e.target !== toggleBtn && e.target !== theLinks) {
+    // Check if Menu is Open
+    if (theLinks.classList.contains("open")) {
+      // Toggle Class "menu-active" on Button
+      toggleBtn.classList.toggle("menu-active");
+
+      // Toggle Class "open" on Links
+      theLinks.classList.toggle("open");
+    }
+  }
+});
+
+// Stop Propagation on Menu
+theLinks.onclick = function (e) {
+  e.stopPropagation();
 };

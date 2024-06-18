@@ -240,7 +240,7 @@ body {
     display: none;
     position: relative;
 }
-.header-area .toggle-menu.open::before {
+.header-area .toggle-menu.menu-active::before {
     content: '';
     border-width: 10px;
     border-style: solid;
