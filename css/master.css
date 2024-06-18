@@ -532,8 +532,12 @@ body {
     width: 100%;
     margin-bottom: 20px;
   }
-  .timeline .timeline-content .left:before
-  .timeline .timeline-content .right:before {
+  .timeline
+    .timeline-content
+    .left:before
+    .timeline
+    .timeline-content
+    .right:before {
     display: none;
   }
   .timeline .timeline-content .left .content::before,
@@ -628,10 +632,10 @@ body {
   }
 }
 @media (max-width: 575px) {
-    .features .feat-box {
-      width: 100%;
-    }
+  .features .feat-box {
+    width: 100%;
   }
+}
 .features .feat-box img {
   width: 96px;
 }
@@ -691,6 +695,11 @@ body {
   position: relative;
   z-index: 2;
 }
+@media (max-width: 767px) {
+  .testimonials h2 {
+    text-align: center;
+  }
+}
 .testimonials .ts-box {
   position: relative;
   z-index: 2;
@@ -698,6 +707,13 @@ body {
   float: left;
   background-color: #fff;
   padding: 20px;
+}
+@media (max-width: 767px) {
+  .testimonials .ts-box {
+    width: 100%;
+    float: none;
+    margin-bottom: 10px;
+  }
 }
 .testimonials .ts-box:not(:last-of-type) {
   margin-right: 1%;
@@ -712,11 +728,24 @@ body {
 .testimonials .ts-box .person-info {
   overflow: hidden;
 }
+@media (max-width: 991px) {
+  .testimonials .ts-box .person-info {
+    text-align: center;
+    overflow: visible;
+  }
+}
 .testimonials .ts-box .person-info img {
   float: left;
   border-radius: 50%;
   margin-right: 20px;
 }
+@media (max-width: 991px) {
+    .testimonials .ts-box .person-info img {
+      float: none;
+      margin-right: 0;
+
+    }
+  }
 .testimonials .ts-box .person-info h4 {
   margin: 14px 0 10px;
 }
@@ -769,6 +798,13 @@ body {
 .contact form .right {
   float: right;
   width: 49%;
+}
+@media (max-width: 767px) {
+  .contact form .left,
+  .contact form .right {
+    width: 100%;
+    float: none;
+  }
 }
 .contact form input:not([type="submit"]),
 .contact form textarea {
