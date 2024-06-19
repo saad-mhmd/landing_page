@@ -21,7 +21,7 @@ body {
   left: -200px;
   background-color: #fff;
   width: 200px;
-  z-index: 1000;
+  z-index: 1001;
   min-height: 100vh;
   transition: 0.3s;
   border: 1px solid #eee;
