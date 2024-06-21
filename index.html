@@ -320,15 +320,15 @@
     <div class="overlay"></div>
     <div class="container">
       <h2>Contact Us</h2>
-      <form action="">
+      <form action="" onsubmit="sendEmail(); reset(); return false;">
         <div class="left">
-          <input type="text" placeholder="Your Name" name="username">
-          <input type="number" placeholder="Your Phone" name="phone">
-          <input type="email" placeholder="Your Email" name="email">
-          <input type="text" placeholder="Subject" name="subject">
+          <input type="text" placeholder="Your Name" name="username" id="name">
+          <input type="tel" placeholder="Your Phone" name="phone" id="phone">
+          <input type="email" placeholder="Your Email" name="email" id="email">
+          <input type="text" placeholder="Subject" name="subject" id="subject">
         </div>
         <div class="right">
-          <textarea name="message" placeholder="Your Message"></textarea>
+          <textarea name="message" placeholder="Your Message" id="message"></textarea>
           <input type="submit" value="Submit">
         </div>
       </form>
@@ -339,7 +339,9 @@
   <div class="footer">Innovated with intention by Mohammad SAAD</div>
   <!-- End Footer -->
 
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> 
   <script src="js/master.js"></script>
-</body>
 
+
+</body>
 </html>

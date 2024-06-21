@@ -344,3 +344,28 @@ document.addEventListener("click", (e) => {
 theLinks.onclick = function (e) {
   e.stopPropagation();
 };
+
+// Send Email
+(function() {
+  emailjs.init("E6kb0V1mzinyL9gw5"); // Replace with your public key
+})();
+
+
+function sendEmail() {
+  var templateParams = {
+    from_name: document.getElementById("name").value,
+    from_email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value
+  };
+
+  emailjs.send("service_1dg6q4h", "template_jfmtj0q", templateParams) 
+    .then(function(response) {
+      alert("Message sent successfully!");
+      console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+      alert("Message not sent. Please try again later.");
+      console.log('FAILED...', error);
+    });
+}
